@@ -30,7 +30,7 @@ const Login = () => {
     setLoading(true);
     dispatch(loginAsync(loginData));
   }
-  if (islogin == true) {
+  if (islogin === true) {
     console.log(islogin)
     console.log("ada2")
     return <Navigate to='/home' />

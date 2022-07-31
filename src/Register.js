@@ -30,7 +30,7 @@ function Register() {
     dispatch(regisAsync(registerData));
 
   }
-  if (issucces == true) {
+  if (issucces === true) {
     console.log(issucces)
     return <Navigate to='/login' />
   }
