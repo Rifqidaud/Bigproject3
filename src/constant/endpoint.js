@@ -18,7 +18,7 @@ const ENDPOINTS = {
         DELETE: '/cart/delete'
     },
     ORDER: {
-        ALL: '/order/all',
+        ALL: '/order/getorder',
         UPDATE: '/order/update',
         ADD: '/order/add',
         SAVE: '/order/save',

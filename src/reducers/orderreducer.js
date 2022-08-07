@@ -2,6 +2,8 @@ import axios from "axios";
 import { createSlice } from "@reduxjs/toolkit";
 import ENDPOINTS from "../constant/endpoint";
 import { buildEndpointURL } from "../utils/endpoints";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import {Navigate} from "react-router-dom"
 
 const orderreducers = createSlice({
   name: "order",
@@ -46,7 +48,7 @@ const orderreducers = createSlice({
 
     getorder: (state, params) => {
       const payload = params.payload;
-      console.log(params);
+      console.log(params, "params");
       state.isloading = true;
       if (payload.code === 200) {
         state.isfindAll = true;
@@ -59,6 +61,7 @@ const orderreducers = createSlice({
         state.isfindAll = false;
         state.iserror = true;
         state.message = null;
+        state.issucces = false;
       }
     },
     getorderdetail: (state, params) => {
@@ -83,21 +86,27 @@ const orderreducers = createSlice({
   },
 });
 
-export const checkoutAsync = (data) => async (dispatch) => {
+export const checkoutAsync = (data,total) => async (dispatch) => {
   try {
-    console.log(data);
+    console.log(data, total,"cek");
     const user = JSON.parse(localStorage.getItem("user"));
-    const token = user.data.access_token;
-    console.log(token);
+    const token = user.access_token;
+    const newData = {
+      cart: JSON.stringify(data),
+      total: total,
+    };
     const response = await axios.post(
       buildEndpointURL(ENDPOINTS.ORDER.CHECKOUT),
+      newData,
       {
-        headers: { Authorization: `Bearer$ {token}` },
-      },
-      data
+        
+        headers: {  Authorization: `Bearer ${token}` },
+        
+      }
     );
-    console.log(response);
-    dispatch(checkout(response.data));
+    if(response.status === 200){
+      return window.location.assign("/checkout");
+    }
   } catch (error) {
     throw new Error(error);
   }
@@ -106,17 +115,25 @@ export const saveAsync = (data) => async (dispatch) => {
   try {
     console.log(data);
     const user = JSON.parse(localStorage.getItem("user"));
-    const token = user.data.access_token;
-    console.log(token);
-    const response = await axios.get(
+    const token = user.access_token;
+    const newData = {
+      dataUser : JSON.stringify(data),
+      
+    };
+    console.log("data =>",data )
+    console.log("dataUser");
+    const response = await axios.put(
       buildEndpointURL(ENDPOINTS.ORDER.SAVE),
+      newData,
       {
         headers: { Authorization: `Bearer ${token}` },
-      },
-      data
+      }
     );
     console.log(response);
     dispatch(save(response.data));
+    if (response.status === 200) {
+      return window.location.assign("/confirmshop");
+    }
   } catch (error) {
     throw new Error(error);
   }
@@ -163,15 +180,13 @@ export const getorderAsync = (data) => async (dispatch) => {
   try {
     console.log(data);
     const user = JSON.parse(localStorage.getItem("user"));
-    const token = user.data.access_token;
+    const token = user.access_token;
     console.log(token);
     const response = await axios.get(
       buildEndpointURL(ENDPOINTS.ORDER.ALL),
       {
-        headers: { Authorization: `Bearer${token}` },
-      },
-      data
-    );
+        headers: { Authorization: `Bearer ${token}` },
+      });
     console.log(response);
     dispatch(getorder(response.data));
   } catch (error) {

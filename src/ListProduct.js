@@ -51,6 +51,9 @@ function ListProduct() {
     function handleChangePage(id){
         return window.location.assign("/detail/"+id);
     }
+    const numberWithCommas = (x) => {
+        return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      };
 
   return (
     
@@ -143,7 +146,7 @@ function ListProduct() {
                                   <div className="product-card">
                                      <div className="badge">Produk Baru</div>
                                           <div className='product-tumb' onClick={() => handleChangePage(item?.id)}>
-                                              <img src={item?.image} alt={item?.image} width="100 px" height="100px" className="card__img" />
+                                              <img src={item?.image} alt={item?.image} width="200 px" height="200px" className="card__img" />
                                             </div>
                                                   <div className="product-details">       
                                                       <h5 className='card-title-List'>{item?.category} </h5>
@@ -151,7 +154,7 @@ function ListProduct() {
                                                             {item?.name}
                                                         </span>
                                                          <div className="product-bottom-details">
-                                                             {item?. price}
+                                                             Rp.{numberWithCommas(item?. price)}
                                                           </div>
                                                             <div className="product-links">
                                                                 < a href=""><FontAwesomeIcon icon={faHeart}/></a>

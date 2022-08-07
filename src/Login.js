@@ -30,6 +30,16 @@ const Login = () => {
     setLoading(true);
     dispatch(loginAsync(loginData));
   }
+  function handleChangeLogin() {
+    return window.location.assign("/login/");
+  }
+  function handleChangeLogout() {
+    return window.location.assign("/logout");
+  }
+  function handleChangeRegister() {
+    return window.location.assign("/");
+  }
+
   if (islogin === true) {
     console.log(islogin)
     console.log("ada2")
@@ -38,55 +48,61 @@ const Login = () => {
 
   return (
     <div>
+      
+        <div className="main">
+          <div className="sub-main">
+            <div className="row">
+              <div className="imgs">
+                <div className="container-image">
+                  <img src={profile} alt="profile" className="profile" />
 
-      <div className="main">
-        <div className="sub-main">
-          <div className="row">
-            <div className="imgs">
-              <div className="container-image">
-                <img src={profile} alt="profile" className="profile" />
+                </div>
 
               </div>
 
+              <div className="row">
+                <form onSubmit={handlehome}>
+                  <div className="input">
+
+                    <label for="uname" class="form-label">Username:</label>
+                    <input type="text" class="form-control" name="username" onChange={onChangeField} required >
+                    </input>
+
+
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+
+                    <label for="pwd" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password" onChange={onChangeField} required></input>
+
+                  </div> 
+                  <button 
+                      onClick={() => handleChangeRegister}
+                      class="button-log"
+                    >REGISTER</button>
+                    <button type="onsubmit"
+                      class="button-log"
+                    >LOGIN</button>
+                    <button 
+                      onClick={() => handleChangeLogout}
+                      class="button-log"
+                    >LOGOUT</button>
+
+                </form>
+              </div>
             </div>
 
-            <div className="row">
-              <form onSubmit={handlehome}>
-                <div className="input">
-
-                  <label for="uname" class="form-label">Username:</label>
-                  <input type="text" class="form-control" name="username" onChange={onChangeField} required >
-                  </input>
-
-
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback">Please fill out this field.</div>
-
-                  <label for="pwd" class="form-label">Password:</label>
-                  <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password" onChange={onChangeField} required></input>
-
-                </div>
-                <div className="mb-3 mt-3">
-                  <button type="onsubmit"
-                    class="btn btn-primary"
-                  >LOGIN</button>
-
-
-                </div>
-              </form>
-            </div>
           </div>
 
+
+
+
+
         </div>
+     
 
-
-
-
-
-      </div>
-    </div>
-
-  )
+    </div>  
+      )
 }
 
-export default Login;
+      export default Login;
