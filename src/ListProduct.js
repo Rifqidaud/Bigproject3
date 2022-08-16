@@ -168,61 +168,12 @@ function ListProduct() {
                             ))}
                       </div>
                   </div>
-                 <div className="col-2 float-right">
-                     <div className="borderall">
-                          All
-                         <br></br>
-                          <b>
-                             <a href="/">
-                                <div className="A">
-                                  FILTER 1
-                                </div>
-                              </a>
-                           </b>
-                          FILTER 2
-                         <br></br>
-                          FILTER 3
-                         <br></br>
-                         FILTER 4
-                         <br></br>
-                         FILTER 5
-                          <br></br>
-                          <br></br>   
-                       </div>
-                   </div>
+                 
                    
                 
                 </div>
                
-               <ul class="pagination bg-light text-dark justify-content-center pt-3">
-                  <li class="page-item active">
-                      <a class="page-link" href="/login">1</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="/listcart">2</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="/detail1">3</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">4</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">5</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">6</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">7</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">8</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">9</a>
-                  </li>
-               </ul>
+               
             </div>
       </div>
    )
