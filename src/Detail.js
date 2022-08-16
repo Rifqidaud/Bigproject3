@@ -78,6 +78,9 @@ const Detail = () => {
   if (isadd === true) {
     return <Navigate to='/listcart' />
   }
+  const numberWithCommas = (x) => {
+    return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
   return (
     <div>
       <div className="container">
@@ -115,10 +118,7 @@ const Detail = () => {
                 <b> {detailProduct?.name}</b>
                 <br></br>
               </h3>
-              <h4><b> {detailProduct?.price}</b>
-                <div className="del">
-                  <del>$39.99</del>
-                </div>
+              <h4><b>Rp.{numberWithCommas(detailProduct?.price)}</b>
                 <br></br>
               </h4>
 
@@ -126,6 +126,7 @@ const Detail = () => {
                 {detailProduct?.category === "1" ? "Kategori Baju Lebaran" : detailProduct?.category === "2" ? "kategori Kemeja" : detailProduct?.category === "3" ? "Kategori Celana" : "Tidak ada kategori"}{""}<br></br>
                 <br></br>
                 {detailProduct?.description}
+                <br></br>
                 Baju Lebaran dan Baju kantoran, hot Promo, terbaik dengan kualitas bagus
                 dan harga terjangkau, hanya di Cilsy Foundation
                 yuk, belanja

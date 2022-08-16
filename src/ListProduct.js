@@ -155,6 +155,9 @@ function ListProduct() {
                                                         </span>
                                                          <div className="product-bottom-details">
                                                              Rp.{numberWithCommas(item?. price)}
+                                                         <div className="del">
+                                                           <del> Rp. 390.000 </del>
+                                                          </div>
                                                           </div>
                                                             <div className="product-links">
                                                                 < a href=""><FontAwesomeIcon icon={faHeart}/></a>

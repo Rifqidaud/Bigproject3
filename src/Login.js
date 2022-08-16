@@ -1,11 +1,12 @@
 
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Navigate } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { loginAsync } from "./reducers/authreducer"
 import profile from "./img.css/Profile_avatar.png";
 import React, { useEffect } from "react"
 import './style.scss';
+
 const Login = () => {
   const [loading, setLoading] = useState(false);
   console.log("ada")
@@ -34,6 +35,7 @@ const Login = () => {
     return window.location.assign("/login/");
   }
   function handleChangeLogout() {
+    localStorage.clear() 
     return window.location.assign("/logout");
   }
   function handleChangeRegister() {
@@ -80,13 +82,16 @@ const Login = () => {
                       onClick={() => handleChangeRegister}
                       class="button-log"
                     >REGISTER</button>
-                    <button type="onsubmit"
-                      class="button-log"
-                    >LOGIN</button>
+                   <Link to ="/">
+                      Lupa Password ?
+                   </Link>
+                      
+                 
                     <button 
-                      onClick={() => handleChangeLogout}
+                      onClick={() => handleChangeLogout()}
                       class="button-log"
                     >LOGOUT</button>
+                   
 
                 </form>
               </div>

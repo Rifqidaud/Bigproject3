@@ -4,6 +4,9 @@ import './style.scss';
 //import backgroundLogin from './src/img.css/background_Login';
 import profile from "./img.css/Profile_avatar.png";
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Carousel from 'react-bootstrap/Carousel';
+import {useState} from "react"
+
 
 function Home() {
     // const text = ["Hello!", "Welcome"];
@@ -11,6 +14,12 @@ function Home() {
 
     // const onNext = () => setIndex(prevIndex => prevIndex + 1)
     // const onPrev = () => setIndex(prevIndex => prevIndex -1)
+    const [index, setIndex] = useState(0);
+
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+    };
+
     return (
         <div>
             <div className='container'>
@@ -20,9 +29,9 @@ function Home() {
                             <div className='container-menu'>
                                 <ul>
                                     <li><a href="/home">Home</a></li>
-                                    <li><a href="/login"
+                                    <li><a href="/logout"
                                     >
-                                        Login</a></li>
+                                        Logout</a></li>
                                     <li><a href='/listproduct'>ListProduct</a></li>
                                     <li><a href='/listcart'>Listcart</a></li>
                                 </ul>
@@ -53,6 +62,51 @@ function Home() {
                         </div>
                     </div>
                     {/* <div className='row'>
+                       <div className='col-12'>
+                        <div className='d-flex justify-content-center'>
+                    <Carousel activeIndex={index} onSelect={handleSelect}>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src=""
+                                alt="First slide"
+                            />
+                            <Carousel.Caption>
+                                <h3>First slide label</h3>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="holder.js/800x400?text=Second slide&bg=282c34"
+                                alt="Second slide"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Second slide label</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="https://images.tokopedia.net/img/cache/500-square/product-1/2021/1/27/inv/inv_641330e7-56bc-4903-b9ab-56960e58a846_680_680.jpg" 
+                                alt="Third slide"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Third slide label</h3>
+                                <p>
+                                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                                </p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    </Carousel> */}
+                    {/* </div>
+                    </div>
+                    </div> */}
+                    {/* <div className='row'>
                     <div className='d-flex justify-content-center'>
                         <div className='slider-home'>
                             <div><img src={onPrev} /></div>
@@ -73,10 +127,7 @@ function Home() {
                         <div className='col-4 offset-8 border-top'>
                             <p className='d-flex justify-content-end'>
 
-                                Lorem Ipsum will go here. Lorem<br></br>
-                                Ipsum Will go Here. Lorem Ipsum<br></br>
-                                will go here. Lorem Ipsum will go<br></br>
-                                here<br></br>
+                               Ayo Belanja di Cilsy, Produk Best Seller, yaitu Baju Kemeja kantoran, Sport dan Lebaran Putih<br></br>
                             </p>
                         </div>
                     </div>

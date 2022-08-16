@@ -4,9 +4,12 @@ function Logout () {
 
     return (
         <div>
-            <div className="row">
+            {/* <div className="row">
                 <div className="html-menu">
-                    <div className="body-menu">
+                    <div className="body-menu"> */}
+
+                     <div className='main-logout'>
+                       
                         <div className='container-menu'>
                             <ul>
                                 <li><a href="/home">Home</a></li>
@@ -18,24 +21,33 @@ function Logout () {
                                 <li><a href='/logout'>Logout</a></li>
                             </ul>
                         </div>
-                    </div>
+                        
+                    {/* </div>
                 </div>
-            </div>
+            </div> */}
+      
         <div className='container'>
-         <div className='background-logout'>
+        <div className='sub-main-logout'>
             <div className='Logout'>
                  <h2>Apakah anda akan Log Out ? </h2>
-                </div>
-            
+           <div className='row'>
+           <div className='col-5'>
              <a href="/login">
                   <button type="submit" class="btn btn-primary">Tidak</button>
               </a>
+            </div>
+            <div className='col-5'>
               <div className='iya'>
                   <a href="/">
                       <button type="submit" class="btn btn-primary">Iya</button>
                    </a>
                 </div>
-        </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+    
         </div>
              
 

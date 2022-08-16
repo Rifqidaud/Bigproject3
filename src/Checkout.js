@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+let total=0
 function Checkout() {
    const dispatch = useDispatch();
    const [loading, setLoading] = useState(false)
@@ -15,13 +16,14 @@ function Checkout() {
    const [dataUser, setDatauser] = useState([])
    const order = useSelector((state) => state.order);
    const issave = useSelector((state) => state.order.issave)
+   
    const [show, setShow] = useState(false);
 
    const handleClose = () => setShow(false);
    const handleShow = () => setShow(true);
    useEffect(() => {
       dispatch(getorderAsync());
-   }, []);
+   }, [dispatch]);
    useEffect(() => {
       if (order.issucces) {
          setListOrder(order.message.data)
@@ -38,12 +40,12 @@ function Checkout() {
    const handleSubmit = (e) => {
       e.preventDefault()
       setLoading(true)
-      dispatch(saveAsync(dataUser));
+      dispatch(saveAsync(dataUser,total));
    }
    useEffect(() => {
       dispatch(getorderAsync());
    }, [issave]);
-
+    
    const numberWithCommas = (x) => {
       return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
@@ -55,7 +57,7 @@ function Checkout() {
    //    console.log(total)
    //    await dispatch(checkoutAsync(data_product, total));
    // }
-   let total=0
+   
   
    return (
       <div>
@@ -65,9 +67,9 @@ function Checkout() {
                   <div className='container-menu'>
                      <ul>
                         <li><a href="/home">Home</a></li>
-                        <li><a href="/login"
+                        <li><a href="/logout"
                         >
-                           Login</a></li>
+                           Logout</a></li>
                         <li><a href='/listproduct'>ListProduct</a></li>
                         <li><a href='/listcart'>Listcart</a></li>
                      </ul>
@@ -129,9 +131,9 @@ function Checkout() {
                               </div>
                               <div className="col-md-8">
                                  <div className="form-group text-end">
-                                    <button type="button" className="btn btn-danger" onClick={handleSubmit}>submit</button>
-                                    <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
+                                    {/* {/* <button type="button" className="btn btn-danger" onClick={handleSubmit}>submit</button> */}
+                                    <Button variant="primary" onClick={handleShow}> 
+        Submit
       </Button>
 
       <Modal
@@ -139,19 +141,20 @@ function Checkout() {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        onClick={handleSubmit}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Submit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          I will not close if you click outside me. Don't even try to press
-          escape key.
+         Apakah Data Sudah benar?<br></br>
+         Jika benar silahkan Click tombol Submit
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">Understood</Button>
+          <Button variant="primary">Submit</Button>
         </Modal.Footer>
       </Modal>
                                  </div>
@@ -182,20 +185,15 @@ function Checkout() {
                                            
                                              <tr>
                                                 <td>{item_data?.product?.name}</td>
-                                                <td>{numberWithCommas(item_data?.product?.price)}</td>
+                                                <td>Rp.{numberWithCommas(item_data?.product?.price)}</td>
                                                 <td>{item_data?.quantity}</td>
-                                                <td>{item_data?.quantity * item_data?.product?.price}</td>
+                                                <td>Rp.{numberWithCommas(item_data?.quantity * item_data?.product?.price)}</td>
 
                                              </tr>
-                                             
-                                    
-                                            
-
                                           )
 
                                        })
                                     )}
-                               
                                <tr>
                                              <td colspan={3}><b>Total Pembayaran  </b></td>
                                              <td>   {total} </td>

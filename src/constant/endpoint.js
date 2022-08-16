@@ -22,7 +22,7 @@ const ENDPOINTS = {
         UPDATE: '/order/update',
         ADD: '/order/add',
         SAVE: '/order/save',
-        DETAIL: '/order/detail/',
+        DETAIL: '/order/getorderdetail',
         CHECKOUT: '/order/checkout',
         DELETE: '/order/delete'
     }

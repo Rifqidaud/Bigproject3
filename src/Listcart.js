@@ -119,9 +119,7 @@ const Listcart = () => {
     console.log("ADA PERUBAHAN");
     console.log(isupdate)
   }, [isupdate]);
-  const numberWithCommas = (x) => {
-    return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
+ 
   
 
 
@@ -149,17 +147,7 @@ const Listcart = () => {
      }
   }
   console.log(dataProduct)
-  // const handleCheckbeli1 = (id) => {
-  //   setlistcart(current =>
-  //     current.map(obj => {
-  //       console.log(obj.product.id === id)
-  //       if (obj.product.id === id) {
-  //         return { ...obj, cekBeli: !obj.cekBeli }
-  //       }
-  //       return obj
-  //     }))
-  // }
-  // console.log(listcart)
+ 
   const handleCheckout = async () => {
     let total = 0
     dataProduct.map((item) => {
@@ -172,6 +160,9 @@ const Listcart = () => {
 };
 console.log(dataProduct)
 
+const numberWithCommas = (x) => {
+  return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
    
   return (
     <div>

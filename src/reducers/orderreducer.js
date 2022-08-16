@@ -19,8 +19,8 @@ const orderreducers = createSlice({
       const payload = params.payload;
       state.isloading = true;
       if (payload.status === "success") {
-        localStorage.setItem("user", JSON.stringify(payload.data));
-        localStorage.setItem("token", JSON.stringify(payload.data));
+        // localStorage.setItem("user", JSON.stringify(payload.data));
+        // localStorage.setItem("token", JSON.stringify(payload.data));
         state.ischeckout = true;
         state.isloading = false;
       } else {
@@ -34,8 +34,8 @@ const orderreducers = createSlice({
       const payload = params.payload;
       state.isloading = true;
       if (payload.status === "success") {
-        localStorage.setItem("user", JSON.stringify(payload.data));
-        localStorage.setItem("token", JSON.stringify(payload.data));
+        // localStorage.setItem("user", JSON.stringify(payload.data));
+        // localStorage.setItem("token", JSON.stringify(payload.data));
         state.issave = true;
         state.isloading = false;
       } else {
@@ -72,9 +72,10 @@ const orderreducers = createSlice({
         //localStorage.setItem("token",JSON.stringify(payload.data))
         state.isfindAll = true;
         state.isloading = false;
-        state.iserror = true;
+        state.iserror = false;
         state.issucces = true;
         state.message = payload;
+
       } else {
         state.isloading = false;
         state.isfindById = false;
@@ -104,6 +105,7 @@ export const checkoutAsync = (data,total) => async (dispatch) => {
         
       }
     );
+    // dispatch()
     if(response.status === 200){
       return window.location.assign("/checkout");
     }
@@ -111,23 +113,23 @@ export const checkoutAsync = (data,total) => async (dispatch) => {
     throw new Error(error);
   }
 };
-export const saveAsync = (data) => async (dispatch) => {
+export const saveAsync = (data,total) => async (dispatch) => {
   try {
     console.log(data);
     const user = JSON.parse(localStorage.getItem("user"));
     const token = user.access_token;
     const newData = {
       dataUser : JSON.stringify(data),
-      
+      total: total,
     };
-    console.log("data =>",data )
+    console.log("data",data )
     console.log("dataUser");
     const response = await axios.put(
       buildEndpointURL(ENDPOINTS.ORDER.SAVE),
       newData,
       {
         headers: { Authorization: `Bearer ${token}` },
-      }
+      },data
     );
     console.log(response);
     dispatch(save(response.data));
@@ -179,6 +181,7 @@ export const destroyAsync = (data) => async (dispatch) => {
 export const getorderAsync = (data) => async (dispatch) => {
   try {
     console.log(data);
+    
     const user = JSON.parse(localStorage.getItem("user"));
     const token = user.access_token;
     console.log(token);
@@ -186,27 +189,26 @@ export const getorderAsync = (data) => async (dispatch) => {
       buildEndpointURL(ENDPOINTS.ORDER.ALL),
       {
         headers: { Authorization: `Bearer ${token}` },
-      });
+      }, 
+      );
     console.log(response);
     dispatch(getorder(response.data));
   } catch (error) {
     throw new Error(error);
   }
 };
-export const getorderdetailAsync = (data) => async (dispatch) => {
+export const getorderdetailAsync = (id) => async (dispatch) => {
   try {
-    console.log(data);
+   
     const user = JSON.parse(localStorage.getItem("user"));
-    const token = user.data.access_token;
+    const token = user.access_token;
     console.log(token);
     const response = await axios.get(
-      buildEndpointURL(ENDPOINTS.ORDER.ALL),
+      buildEndpointURL(ENDPOINTS.ORDER.DETAIL+"/"+id),
       {
-        headers: { Authorization: `Bearer${token}` },
-      },
-      data
-    );
-    console.log(response);
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    console.log("response detail",response)
     dispatch(getorderdetail(response.data));
   } catch (error) {
     throw new Error(error);
